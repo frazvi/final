@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="livkonApp">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
+
+  <link rel="stylesheet" type="text/css" href="/final.css">
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+  
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
+
+  <script type='text/javascript' src="/js/main.js"></script>
+
+
+<head>
+  <title></title>
+</head>
+<body ng-controller="homeController">
+<!-- tokbox library -->
+<script src='//static.opentok.com/v2/js/opentok.min.js'></script>
+
+<!-- Header -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid"></div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <p>Livkon</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Konnect</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Speaker Services<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Find A Speaker</a></li>
+            <li><a href="#">Sign Up To Be A Speaker</a></li>
+          </ul>
+        </li> 
+        
+       
+        <li><a href="#">About Livkon</a></li> 
+        <li><a href="#">Login</a></li>
+       
+        </ul>
+      </nav>
+
+      <!-- content for other pages goes inside these two divs -->
+      <div class="content" ng-view></div>
+
+      <!-- Footer -->
+      <div id = "footer"></div>
+      <div class="navbar navbar-fixed-bottom navbar-inverse" role="navigation">
+          <div class="container">
+            <div class="navbar-text pull-left">
+            <div class="facebookButton"> <a href="facebook.jpeg"></a></div>
+            <!-- <image class="facebookButton" src="facebook.jpeg" /> -->
+            <p> &copy; Livkon 2016 </p>
+            </div>
+          </div>
+      </div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+    <!-- Sign Up Form -->
+      <h1> Sign Up </h1>
+      <form ng-submit="signup()">
+        <input type="text" ng-model="signupForm.username" placeholder="username" />
+        <input type="password" ng-model="signupForm.password" placeholder="password" />
+        <input type="text" ng-model="signupForm.email" placeholder="email" />
+        <input type="text" ng-model="signupForm.religion" placeholder="religion" />
+        <input type="text" ng-model="signupForm.languages" placeholder="languages" />
+        <input type="text" ng-model="signupForm.countryOfResidence" placeholder="countryOfResidence" />
+        <input type="text" ng-model="signupForm.facebookConnect" placeholder="facebookConnect" />
+        <input type="submit" value="Enter" />
+      </form>
+
+      <!-- Log in Form -->
+    <h1> Log in </h1>
+      <form ng-submit="login()">
+        <input type="text" ng-model="loginForm.username" placeholder="username" />
+        <input type="password" ng-model="loginForm.password" placeholder="password" />
+        <input type="submit" value="Enter" />
+      </form>
