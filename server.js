@@ -28,13 +28,13 @@ mongoose.connect('mongodb://localhost/userDatabase')
 
 var userSchema = mongoose.Schema ({
 	username: {type: String, required: true, unique: true},
+	email 	: {type: String, required: true, unique: true},
+	identifyingReligion : {type: String, required: true},
+	languages: {type: Array, required: true},
+	countryOfResidence: {type: String, required: false},
+	Gender: {type: String, required: true},
+	profilePicture: {type: String, required: false},
 	password: {type: String, required: true},
-	email 	: {type: String, required: true, unique: true}
-	religion : {type: String, required: true},
-	languages: {type: array, required: true},
-	Location: {type: String, required: false},
-	Website: {type: String, required: false},
-	Facebook Connect: {boolean},
 });
 
 var User = mongoose.model('user', userSchema);
@@ -99,6 +99,10 @@ app.isAuthenticatedAjax = function(req, res, next) {
 	res.send({error: 'not logged in; redirecting to login page'});
 }
 
+app.get('/me', function(req, res) {
+	res.send(req.user)
+})
+
 // End of Passport Config
 
 // Routes
@@ -120,6 +124,11 @@ app.post('/signup', function(req, res) {
 			var newUser = new User ({
 				username: req.body.username,
 				email: req.body.email,
+				identifyingReligion : req.body.religion,
+				languages : req.body.languages,
+				countryOfResidence : req.body.countryOfResidence,
+				gender : req.body.gender,
+				profilePicture : req.body.profilePicture,
 				password: hash,
 			});
 			newUser.save(function(saveErr, user) {

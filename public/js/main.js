@@ -53,6 +53,11 @@ angular.module('livkonApp')
 				templateUrl : '/html/fakeFactConnect.html',
 				controller  : 'fakeFactConnectController'
 			})
+
+			.when('/videoChat', {
+				templateUrl : '/html/videoChat.html',
+				controller 	: 'videoChatController'
+			})
 	})
 
 
@@ -71,7 +76,7 @@ angular.module('livkonApp')
 			}) .then(function (returnData) {
 				console.log('hello', returnData);
 				// $rootScope.user = returnData.data.user 
-				if (returnData.data.success) {$window.location.href='/'}
+				if (returnData.data.success) {$scope.user=servRes.data}
 				else {console.log(returnData)}
 			})
 		}
@@ -97,6 +102,16 @@ angular.module('livkonApp')
 					$scope.user= returnData.data.user
 				}
 			})
+
+			$http.get('/me')
+				.then(function(servRes) {
+					if ('.servRes.data') {
+
+					}
+					else {
+						$scope.user=servRes.data
+					}
+				})
 	}]) 
 
 angular.module('livkonApp')
@@ -126,6 +141,29 @@ angular.module('livkonApp')
 angular.module('livkonApp')
 	.controller('fakeFactConnectController', ['$scope', fakeFactConnectController]) 
 
+
+angular.module('livkonApp')
+	.controller('videoChatController', ['$scope', videoChatController])
+function videoChatController ($scope) {
+	var apiKey = 45525522;
+	var sessionId = '1_MX40NTUyNTUyMn5-MTQ1NzY2NTAyNDU5MH5JTDR0VmlMUUwzT0xvdmNxQVE4eGZhSC9-UH4';
+	var session = OT.initSession(apiKey, sessionId);
+		session.on({
+	  streamCreated: function(event) { 
+	    session.subscribe(event.stream, 'subscribersDiv', {insertMode: 'append'}); 
+	  }
+	});
+
+	<!-- Generating a token -->
+	var token = 'T1==cGFydG5lcl9pZD00NTUyNTUyMiZzaWc9MWJmMDVkMWQ4NTEyNGNmZTgyYmFkMzkwZjFhYTEwYWMxZmJiOGIxZjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5UVXlOVFV5TW41LU1UUTFOelkyTlRBeU5EVTVNSDVKVERSMFZtbE1VVXd6VDB4dmRtTnhRVkU0ZUdaaFNDOS1VSDQmY3JlYXRlX3RpbWU9MTQ1NzcxNzg1MSZub25jZT0wLjIxNjMwMjU0OTY4MDAzMzM3JmV4cGlyZV90aW1lPTE0NTc4MDQyNTE=';
+	session.connect(token, function(error) {
+	  if (error) {
+	    console.log(error.message);
+	  } else {
+	    session.publish('myPublisherDiv', {width: 320, height: 240});
+	  }
+	});
+}
 
 function homeController ($scope) {
 	console.log('home Controller!')
