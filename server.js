@@ -40,50 +40,7 @@ var userSchema = mongoose.Schema ({
 var User = mongoose.model('user', userSchema);
 
 // Video Chat
-//Creating a session that will attempt to transmit streams directly 
-//between clients. Session uses the openTok TURN server if clients can't connect
-opentok = new OpenTok(apiKey, apiSecret);
 
-opentok.createSession(properties, function(err, session) {
-	if (err) return console.log(err);
-
-	//saving the sessionID
-	db.save('session', session.sessionId, done);
-})
-
-//creating a session that will use the openTok Media Router
-opentok.createSession ({mediaMode: "routed"}, function (err, session) {
-	if (err) return console.log(err);
-
-	//saving the session ID
-	db.save('session', session.sessionId, done);
-)}
-
-// Creating(?) a session with a location hint
-opentok.createSession({location: '12.34.56.78'}, function (err, session) {
-	if (err) return console.log(err);
-
-	//Saving the session ID
-	db.save('session', session.sessionId, done);
-)}
-
-//Session with automatic archiving
-opentok.createSession ({mediaMode: 'routed', archiveMode: 'always'}, function(err, session) {
-	if (err) return console.log(err);
-
-	//saving the session ID
-	db.save('session', session.sessionId, done);
-})
-
-//Generating a Token from just a sessionId taken from a database
-token = opentok.generateToken(sessionId);
-
-	//setting options within the Token
-	token = session.generateToken({
-		role : 'moderator',
-		expireTime : (new Data().getTime() / 1000)+(7 * 24 * 60 * 60), //in one week 
-		date : 'name = username' 
-});
 
 //Passport Config
 var passport = require ('passport')
