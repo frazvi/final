@@ -19,19 +19,25 @@ angular.module('livkonApp')
 				controller  : 'konnectController'
 			})
 
-			.when('/speakerServices', {
-				templateUrl : '/html/speakerServices.html',
-				controller  : 'speakerServicesController'
+
+			.when('/findspeaker', {
+				templateUrl : '/html/findspeaker.html',
+				controller  : 'findSpeakerController'
 			})
 
-			.when('/findSpeaker', {
-				templateUrl : '/html/findSpeaker.html',
-				controller  : 'findSpeakerController'
+			.when('/willNotify.html', {
+				templateUrl : '/html/willNotify.html',
+				controller 	: 'willNotifyController'
 			})
 
 			.when('/signUpSpeaker', {
 				templateUrl : '/html/signUpSpeaker.html',
 				controller  : 'signUpSpeakerController'
+			})
+
+			.when('/thankYouSpeaker', {
+				templateUrl : '/html/thankYouSpeaker.html',
+				controller 	: 'thankYouSpeakerController'
 			})
 
 			.when('/about', {
@@ -58,6 +64,7 @@ angular.module('livkonApp')
 				templateUrl : '/html/videoChat.html',
 				controller 	: 'videoChatController'
 			})
+
 	})
 
 
@@ -121,13 +128,61 @@ angular.module('livkonApp')
 	.controller('konnectController', ['$scope', konnectController]) 
 
 angular.module('livkonApp')
-	.controller('speakerServicesController', ['$scope', speakerServicesController]) 
+	.controller('findSpeakerController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+		
+			 $http({
+            method : 'GET',
+            url    : '/api/me',
+        }).then(function(returnData){
+            console.log(returnData)
+            if ( returnData.data.user ) {
+                $scope.client = returnData.data.user
+                $scope.update = function () {
+				console.log($scope.user)
+				console.log($scope.client)
+			// $http ({
+			// 	method: 'POST',
+			// 	url : '/api/findspeaker',
+			// 	data : $scope.user
+			// }) .then(function(returnData) {
+			// 	console.log('Here is your data', returnData);
+			// 	if (returnData.data.success) {$window.location.href='/public/html/willNotify.html'}
+			// 	else(console.log(returnData))
+			// })
+
+			}
+            }
+        })
+
+			// $http ({
+			// 	method: 'GET',
+			// 	url : '/api/me',
+			// }) .then(function(returnData) {
+			// 	console.log(returnData)
+			// 	if (returnData.data.user) {
+			// 		$scope.client= returnData.data.user
+			// 	}
+			// })
+
+			
+	}]) 
 
 angular.module('livkonApp')
-	.controller('findSpeakerController', ['$scope', findSpeakerController]) 
+	.controller('signUpSpeakerController', ['$scope', '$http', '$window', function ($scope, $http, $window) {
+			$scope.signUpSpeaker = function () {
+			$http ({
+				method: 'POST',
+				url : '/api/signupspeaker',
+				data : $scope.user
+			}) .then(function(returnData) {
+				console.log('Here is your data', returnData);
+				if (returnData.data.success) {$window.location.href='/public/html/thankYouSpeaker.html'}
+				else(console.log(returnData))
+			})
 
-angular.module('livkonApp')
-	.controller('signUpSpeakerController', ['$scope', signUpSpeakerController]) 
+		}
+	}]) 
+
 
 angular.module('livkonApp')
 	.controller('aboutController', ['$scope', aboutController]) 
@@ -142,100 +197,100 @@ angular.module('livkonApp')
 	.controller('fakeFactConnectController', ['$scope', fakeFactConnectController]) 
 
 
-angular.module('livkonApp')
-	.controller('videoChatController', ['$scope', videoChatController])
-$(document).ready(function() {
-	var apiKey = 45525522;
-	var sessionId = '1_MX40NTUyNTUyMn5-MTQ1NzY2NTAyNDU5MH5JTDR0VmlMUUwzT0xvdmNxQVE4eGZhSC9-UH4';
-	var token = 'T1==cGFydG5lcl9pZD00NTUyNTUyMiZzaWc9YTc5YmY2YjMxMWY3MzFiNzQwNGYzM2EzZGE5M2Y0ZjBjMmRjZWM1Yzpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5UVXlOVFV5TW41LU1UUTFOelkyTlRBeU5EVTVNSDVKVERSMFZtbE1VVXd6VDB4dmRtTnhRVkU0ZUdaaFNDOS1VSDQmY3JlYXRlX3RpbWU9MTQ1NzgwNjU1NCZub25jZT0wLjkyNzgxMDQ2Mzc4Mzk3MyZleHBpcmVfdGltZT0xNDU3ODkyOTU0';
-	var session, publisher;
+// angular.module('livkonApp')
+// 	.controller('videoChatController', ['$scope', videoChatController])
+// $(document).ready(function() {
+// 	var apiKey = 45525522;
+// 	var sessionId = '1_MX40NTUyNTUyMn5-MTQ1NzY2NTAyNDU5MH5JTDR0VmlMUUwzT0xvdmNxQVE4eGZhSC9-UH4';
+// 	var token = 'T1==cGFydG5lcl9pZD00NTUyNTUyMiZzaWc9YTc5YmY2YjMxMWY3MzFiNzQwNGYzM2EzZGE5M2Y0ZjBjMmRjZWM1Yzpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5UVXlOVFV5TW41LU1UUTFOelkyTlRBeU5EVTVNSDVKVERSMFZtbE1VVXd6VDB4dmRtTnhRVkU0ZUdaaFNDOS1VSDQmY3JlYXRlX3RpbWU9MTQ1NzgwNjU1NCZub25jZT0wLjkyNzgxMDQ2Mzc4Mzk3MyZleHBpcmVfdGltZT0xNDU3ODkyOTU0';
+// 	var session, publisher;
 
-	route();
+// 	route();
 
-    $('#loginForm').on('submit', function(){
-        var username = $('#username').val();
-        if(username == "") {
-            alert('User name should not be empty.');
-            return false;
-        }
+//     $('#loginForm').on('submit', function(){
+//         var username = $('#username').val();
+//         if(username == "") {
+//             alert('User name should not be empty.');
+//             return false;
+//         }
 
-        saveUsername(username);
+//         saveUsername(username);
 
-        $('#loginPage').hide();
-        $('#boxPage').show();
-        startInterviewBox();
-        location.hash = "#interviewbox"; 
-        return false;
+//         $('#loginPage').hide();
+//         $('#boxPage').show();
+//         startInterviewBox();
+//         location.hash = "#interviewbox"; 
+//         return false;
 
-    });
+//     });
 
-    function route() {
-        if(location.hash !== '#interviewbox') {
-            $('#loginPage').show();
-            $('#boxPage').hide();
-            autoFocusUsername();
-        } else {
-            startInterviewBox();
-        }
-    }
+//     function route() {
+//         if(location.hash !== '#interviewbox') {
+//             $('#loginPage').show();
+//             $('#boxPage').hide();
+//             autoFocusUsername();
+//         } else {
+//             startInterviewBox();
+//         }
+//     }
 
-    function autoFocusUsername() {
-        $('#username').select();
-    }
+//     function autoFocusUsername() {
+//         $('#username').select();
+//     }
 
 
-    function sessionConnectedHandler (event) {
-        session.publish( publisher );
-        subscribeToStreams(event.streams);
-    }
-    function subscribeToStreams(streams) {
-        var subscribersElement = $('#subscribers');
-        var subscriberProperties = {width:200, height:150};
-        for (var i = 0; i < streams.length; i++) {
-            var stream = streams[i];
-            if (stream.connection.connectionId 
-             != session.connection.connectionId) 
-            {
-                var div = document.createElement('div');
-                var subscriberId = 'subscriber_' + i;
-                div.setAttribute('id', subscriberId);
+//     function sessionConnectedHandler (event) {
+//         session.publish( publisher );
+//         subscribeToStreams(event.streams);
+//     }
+//     function subscribeToStreams(streams) {
+//         var subscribersElement = $('#subscribers');
+//         var subscriberProperties = {width:200, height:150};
+//         for (var i = 0; i < streams.length; i++) {
+//             var stream = streams[i];
+//             if (stream.connection.connectionId 
+//              != session.connection.connectionId) 
+//             {
+//                 var div = document.createElement('div');
+//                 var subscriberId = 'subscriber_' + i;
+//                 div.setAttribute('id', subscriberId);
 
-                subscribersElement.append(div);
-                $(div).css('float','left');
-                $(div).css('margin-right','20px');
-                $(div).css('margin-bottom','20px');
+//                 subscribersElement.append(div);
+//                 $(div).css('float','left');
+//                 $(div).css('margin-right','20px');
+//                 $(div).css('margin-bottom','20px');
 
-                session.subscribe(stream, subscriberId, subscriberProperties);
-            }
-        }
-    }
-    function streamCreatedHandler(event) {
-        subscribeToStreams(event.streams);
-    }
+//                 session.subscribe(stream, subscriberId, subscriberProperties);
+//             }
+//         }
+//     }
+//     function streamCreatedHandler(event) {
+//         subscribeToStreams(event.streams);
+//     }
 
-    function startInterviewBox() {
-        $('#loginPage').hide();
-        $('#boxPage').show();
-        var publisherName = getUsername();
-        var publisherProperties = { name:publisherName};
+//     function startInterviewBox() {
+//         $('#loginPage').hide();
+//         $('#boxPage').show();
+//         var publisherName = getUsername();
+//         var publisherProperties = { name:publisherName};
 
-        publisher = TB.initPublisher(apiKey, 'publisher', publisherProperties);
-        session   = TB.initSession(sessionId);
+//         publisher = TB.initPublisher(apiKey, 'publisher', publisherProperties);
+//         session   = TB.initSession(sessionId);
 
-        session.connect(apiKey, token);
-        session.addEventListener("sessionConnected", 
-        sessionConnectedHandler);
+//         session.connect(apiKey, token);
+//         session.addEventListener("sessionConnected", 
+//         sessionConnectedHandler);
 
-        session.addEventListener("streamCreated", 
-        streamCreatedHandler);
+//         session.addEventListener("streamCreated", 
+//         streamCreatedHandler);
 
-        window.setTimeout(function(){
-            $('body').trigger('welcome');
-        }, 500);
+//         window.setTimeout(function(){
+//             $('body').trigger('welcome');
+//         }, 500);
         
 
-    }
-})
+//     }
+// })
 
 // function videoChatController ($scope) {
 // 	var apiKey = 45525522;
