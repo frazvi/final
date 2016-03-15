@@ -1,1 +1,35 @@
-<p> Sign up to be a speaker! </p>
+<div ng-controller="signUpSpeakerController">
+	<div class="twoHeaders"> </div>
+	<h1> Be A Speaker </h1>
+
+	<h2> Want to educate others and share your faith? Sign up to be a speaker! </h2>
+	<div class="speakerInfo container-fluid">
+		<div class="row">
+			<div class=<"col-md-6">
+
+				<h3> Please fill out the form below and we will get in touch with you when someone searches for a speaker </h3>
+
+
+				<form class="findSpeakerForm">
+					<p> Your Religion  <input type="text" ng-model="user.religion" /> </p> 
+					<p> Preferred Language of Communication  <input type="text" ng-model="user.language" /> </p> 
+					<p> Willing to Speak  <input type="radio" ng-model="user.chatLocation" value="locally/in person" /> Locally/In Person 
+					<input type="radio" ng-model="user.chatLocation" value="Over Live Video" /> Over Live Video
+					<input type="radio" ng-model="user.chatLocation" value="No Preference"	/> No Preference	
+					</p>
+
+					<p> Your Gender  <input type="radio" ng-model="user.gender" value="female" /> Female 
+					<input type="radio" ng-model="user.gender" value="male" /> Male
+					<input type="radio" ng-model="user.gender" value="Other" /> Other </p>
+					<p> Do you require compensation?  <input type="radio" ng-model="user.requireCompensation" value="yes" /> Yes
+					<input type="radio" ng-model="user.requireCompensation"value="no" /> No </p>
+					<p> If yes, please enter the amount you would like to be compensated for one talk  <input type="currency" ng-model="user.amountCompensation" /> </p>
+					<p> If there are any topics that you are more knowledgable about or comfortable speaking on, please list them here <input type="text" ng-model="user.topicList"/> </p>
+					<p><input type="submit" ng-click="update(user)" value="Enter" /> </p>
+				</form>
+			</div>
+		</div>
+
+		
+	</div>
+</div>

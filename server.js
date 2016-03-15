@@ -35,6 +35,17 @@ var userSchema = mongoose.Schema ({
 	Gender: {type: String, required: true},
 	profilePicture: {type: String, required: false},
 	password: {type: String, required: true},
+	findSpeakerAttributes: {
+		willingToComepnsate: {type: Boolean, required: true},
+		timeRequired: {type: Number, required: false}
+	},
+	signUpSpeaker: {
+		language : {type: String, required: true},
+		chatLocation: {type: String, required: true},
+		requireCompensation: {type: Boolean, required: true},
+		amountCompensation : {type: Number, required: false},
+		topicList : {type: String, required: false}
+	},
 });
 
 var User = mongoose.model('user', userSchema);
@@ -109,9 +120,9 @@ app.get('/me', function(req, res) {
 // End of Passport Config
 
 // Routes
-app.get('/', function (req, res) {
-	res.sendFile('/shell.html', {root: './public/html'});
-})
+// app.get('/', function (req, res) {
+// 	res.sendFile('/shell.html', {root: './public/html'});
+// })
 
 app.get('/', function(req, res) {
 	if (!req.session.count) {req.session.count = 0}
@@ -158,9 +169,38 @@ app.post('/login', function(req, res, next) {
 	}) (req, res, next);
 })
 
-app.get('/api/me', function (req, res) {
-	res.send(req.user)
+
+app.get('/api/me', app.isAuthenticatedAjax, function(req, res){
+    res.send({user:req.user})
 })
+
+// Route for findSpeaker page
+app.post('/api/findspeaker', function (req, res) {
+	var user = new User({
+		findSpeakerAttributes: {
+			willingToComepnsate: req.body.willingToComepnsate,
+			timeRequired: req.body.timeRequired,
+		},
+		signUpSpeaker: {
+			language : req.body.language,
+			chatLocation: req.body.chatLocation,
+			requireCompensation: req.body.requireCompensation,
+			amountCompensation : req.body.amountCompensation,
+			topicList : req.body.topicList,
+		}
+	})
+	user.save(function(err, savedUser){
+		res.send(savedUser)
+	})
+	res.redirect('/willNotify');
+})
+
+app.post('/api/signupspeaker', function (req, res) {
+	res.sendFile('/thankYouSpeaker');
+})
+
+
+
 
 // Create server and listen for connections
 var port = 3000

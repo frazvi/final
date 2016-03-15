@@ -1,1 +1,42 @@
-<p> Find a speaker! </p>
+
+<div ng-controller="findSpeakerController">
+	<div class="twoHeaders"> </div>
+	<h1> Find A Speaker </h1>
+
+	<h2> Need someone to speak at your school or place of worship? Find a speaker to match your needs </h2>
+	<div class="speakerInfo container-fluid">
+		<div class="row">
+			<div class=<"col-md-6">
+
+				<h3> Please fill out the form below for your speaker preferences </h3>
+
+
+				<form class="findSpeakerForm">
+					<p> Speaker's Religion  <input type="text" ng-model="user.religion" /> </p> 
+					<p> Speaker's Language  <input type="text" ng-model="user.language" /> </p> 
+					<p> Willing to Speak  <input type="radio" ng-model="user.chatLocation" value="locally/in person" /> Locally/In Person 
+					<input type="radio" ng-model="user.chatLocation" value="Over Live Video" /> Over Live Video
+					<input type="radio" ng-model="user.chatLocation" value="No Preference"	/> No Preference	
+					</p>
+					<p> Speaker's Gender  <input type="radio" ng-model="user.gender" value="female" /> Female 
+					<input type="radio" ng-model="user.gender" value="male" /> Male
+					<input type="radio" ng-model="user.gender" value="No Preference" /> No Preference </p>
+					<p> Willing to compensate speaker?  <input type="radio" value="yes" ng-model="user.willingToCompensate" /> Yes
+					<input type="radio" value="no" /> No </p>
+					<p> If yes, please enter the amount you are willing to pay for one talk  <input type="currency" ng-model="amountCompensation" /> </p>
+					<p> Estimated time of talk <input type="time" ng-model="user.timeRequired" /> </p>
+					<p> If there are any questions or topics in particular you would like the speaker to address, please enter them here  <input type="text" ng-model="user.topicList" /> </p>
+					<p><input type="submit" ng-click="update()" value="Enter" /> </p>
+				</form>
+			</div>
+		</div>
+
+		<!-- <div class ="row"> -->
+			<div class=<"col-md-6">
+			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzkY0JrpgoSqErcItV5HjTk1IqtVdv-KcGSsi9JnDUayxnWfOM"/>
+			<img src="http://speakingontheside.com/wp-content/uploads/2013/06/how-to-become-a-public-speaker-300x212.png"
+			</div>
+		</div>
+	</div>
+</div>
+
