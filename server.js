@@ -2,9 +2,9 @@ var express = require ('express');
 var bodyParser = require ('body-parser');
 var logger = require ('morgan');
 var mongoose = require ('mongoose');
-
+var OpenTok = require('opentok')
 // Create express app object
-var app = express ();
+var app = express();
 
 
 // App config
@@ -38,6 +38,9 @@ var userSchema = mongoose.Schema ({
 });
 
 var User = mongoose.model('user', userSchema);
+
+// Video Chat
+
 
 //Passport Config
 var passport = require ('passport')

@@ -144,26 +144,119 @@ angular.module('livkonApp')
 
 angular.module('livkonApp')
 	.controller('videoChatController', ['$scope', videoChatController])
-function videoChatController ($scope) {
+$(document).ready(function() {
 	var apiKey = 45525522;
 	var sessionId = '1_MX40NTUyNTUyMn5-MTQ1NzY2NTAyNDU5MH5JTDR0VmlMUUwzT0xvdmNxQVE4eGZhSC9-UH4';
-	var session = OT.initSession(apiKey, sessionId);
-		session.on({
-	  streamCreated: function(event) { 
-	    session.subscribe(event.stream, 'subscribersDiv', {insertMode: 'append'}); 
-	  }
-	});
+	var token = 'T1==cGFydG5lcl9pZD00NTUyNTUyMiZzaWc9YTc5YmY2YjMxMWY3MzFiNzQwNGYzM2EzZGE5M2Y0ZjBjMmRjZWM1Yzpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5UVXlOVFV5TW41LU1UUTFOelkyTlRBeU5EVTVNSDVKVERSMFZtbE1VVXd6VDB4dmRtTnhRVkU0ZUdaaFNDOS1VSDQmY3JlYXRlX3RpbWU9MTQ1NzgwNjU1NCZub25jZT0wLjkyNzgxMDQ2Mzc4Mzk3MyZleHBpcmVfdGltZT0xNDU3ODkyOTU0';
+	var session, publisher;
 
-	<!-- Generating a token -->
-	var token = 'T1==cGFydG5lcl9pZD00NTUyNTUyMiZzaWc9MWJmMDVkMWQ4NTEyNGNmZTgyYmFkMzkwZjFhYTEwYWMxZmJiOGIxZjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5UVXlOVFV5TW41LU1UUTFOelkyTlRBeU5EVTVNSDVKVERSMFZtbE1VVXd6VDB4dmRtTnhRVkU0ZUdaaFNDOS1VSDQmY3JlYXRlX3RpbWU9MTQ1NzcxNzg1MSZub25jZT0wLjIxNjMwMjU0OTY4MDAzMzM3JmV4cGlyZV90aW1lPTE0NTc4MDQyNTE=';
-	session.connect(token, function(error) {
-	  if (error) {
-	    console.log(error.message);
-	  } else {
-	    session.publish('myPublisherDiv', {width: 320, height: 240});
-	  }
-	});
-}
+	route();
+
+    $('#loginForm').on('submit', function(){
+        var username = $('#username').val();
+        if(username == "") {
+            alert('User name should not be empty.');
+            return false;
+        }
+
+        saveUsername(username);
+
+        $('#loginPage').hide();
+        $('#boxPage').show();
+        startInterviewBox();
+        location.hash = "#interviewbox"; 
+        return false;
+
+    });
+
+    function route() {
+        if(location.hash !== '#interviewbox') {
+            $('#loginPage').show();
+            $('#boxPage').hide();
+            autoFocusUsername();
+        } else {
+            startInterviewBox();
+        }
+    }
+
+    function autoFocusUsername() {
+        $('#username').select();
+    }
+
+
+    function sessionConnectedHandler (event) {
+        session.publish( publisher );
+        subscribeToStreams(event.streams);
+    }
+    function subscribeToStreams(streams) {
+        var subscribersElement = $('#subscribers');
+        var subscriberProperties = {width:200, height:150};
+        for (var i = 0; i < streams.length; i++) {
+            var stream = streams[i];
+            if (stream.connection.connectionId 
+             != session.connection.connectionId) 
+            {
+                var div = document.createElement('div');
+                var subscriberId = 'subscriber_' + i;
+                div.setAttribute('id', subscriberId);
+
+                subscribersElement.append(div);
+                $(div).css('float','left');
+                $(div).css('margin-right','20px');
+                $(div).css('margin-bottom','20px');
+
+                session.subscribe(stream, subscriberId, subscriberProperties);
+            }
+        }
+    }
+    function streamCreatedHandler(event) {
+        subscribeToStreams(event.streams);
+    }
+
+    function startInterviewBox() {
+        $('#loginPage').hide();
+        $('#boxPage').show();
+        var publisherName = getUsername();
+        var publisherProperties = { name:publisherName};
+
+        publisher = TB.initPublisher(apiKey, 'publisher', publisherProperties);
+        session   = TB.initSession(sessionId);
+
+        session.connect(apiKey, token);
+        session.addEventListener("sessionConnected", 
+        sessionConnectedHandler);
+
+        session.addEventListener("streamCreated", 
+        streamCreatedHandler);
+
+        window.setTimeout(function(){
+            $('body').trigger('welcome');
+        }, 500);
+        
+
+    }
+})
+
+// function videoChatController ($scope) {
+// 	var apiKey = 45525522;
+// 	var sessionId = '1_MX40NTUyNTUyMn5-MTQ1NzY2NTAyNDU5MH5JTDR0VmlMUUwzT0xvdmNxQVE4eGZhSC9-UH4';
+// 	var session = OT.initSession(apiKey, sessionId);
+// 		session.on({
+// 	  streamCreated: function(event) { 
+// 	    session.subscribe(event.stream, 'subscribersDiv', {insertMode: 'append'}); 
+// 	  }
+// 	});
+
+// 	<!-- Generating a token -->
+// 	var token = 'T1==cGFydG5lcl9pZD00NTUyNTUyMiZzaWc9YTc5YmY2YjMxMWY3MzFiNzQwNGYzM2EzZGE5M2Y0ZjBjMmRjZWM1Yzpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5UVXlOVFV5TW41LU1UUTFOelkyTlRBeU5EVTVNSDVKVERSMFZtbE1VVXd6VDB4dmRtTnhRVkU0ZUdaaFNDOS1VSDQmY3JlYXRlX3RpbWU9MTQ1NzgwNjU1NCZub25jZT0wLjkyNzgxMDQ2Mzc4Mzk3MyZleHBpcmVfdGltZT0xNDU3ODkyOTU0';
+// 	session.connect(token, function(error) {
+// 	  if (error) {
+// 	    console.log(error.message);
+// 	  } else {
+// 	    session.publish('myPublisherDiv', {width: 320, height: 240});
+// 	  }
+// 	});
+// }
 
 function homeController ($scope) {
 	console.log('home Controller!')
