@@ -24,7 +24,7 @@ app.use(app.sessionMiddleware)
 
 // Setting up Database
 var userSchema = require('mongoose')
-mongoose.connect('mongodb://localhost/userDatabase')
+mongoose.connect('mongodb://admin:admin@ds015869.mlab.com:15869/faith')
 
 var userSchema = mongoose.Schema ({
 	username: {type: String, required: true, unique: true},
