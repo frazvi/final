@@ -141,6 +141,7 @@ angular.module('livkonApp')
 		};
 
 		onClientReady = function() {
+			console.log('client ready')
 			gapi.hangout.onApiReady.add(function(e) {
 				if(e.isApiReady) {
 					onApiReady();
@@ -163,12 +164,16 @@ angular.module('livkonApp')
 					"hangoutUrl" : hangoutUrl,
 					"topic" : param["gd"]
 				}
-			}).done(function (data, status, xhr) {
+			}).success(function (data, status, xhr) {
 				$('#msg').html(data.msg);
+				console.log(data)
 			}) .fail(function(xhr, status, error) {
 				$('msg').html("There was a problem contacting the help desk. Please try again. ("+textStatus+")");
 			});
 		};
+		onClientReady()
+
+		{}
 	}]) 
 
 angular.module('livkonApp')

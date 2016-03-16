@@ -53,6 +53,13 @@ var userSchema = mongoose.Schema ({
 
 var User = mongoose.model('user', userSchema);
 
+// var religionSchema = mongoose.Schema ({
+// 	name: {type: String, required: true}
+// 	activeUsers: {type: Array}
+// })
+
+// var Religion = mongoose.model('religion', religionSchema);
+
 // Video Chat
 
 
