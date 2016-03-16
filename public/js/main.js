@@ -129,21 +129,21 @@ angular.module('livkonApp')
 	.controller('videoChatController', ['$scope', '$http', function($scope, $http) {
 
 		var apiKey = 45525522;
-        var sessionId = '1_MX40NTUyNTUyMn5-MTQ1ODE3MTcyMDg4M35BL0FIekt5RW5LYngxaWgzc1ZjQXVqNEJ-UH4';
+        var sessionId = '1_MX40NTUyNTUyMn5-MTQ1ODE3MjIzNzYzOX4xU0NXVC9LU0p4ckpXYlo2TW56RDlyWUl-UH4';
         var session = OT.initSession(apiKey, sessionId);
                 
         
-        var token = 'T1==cGFydG5lcl9pZD00NTUyNTUyMiZzaWc9M2Q3ZmM1Yjc4ZWRmZjNmMmVmNGEyYzllMjIxY2JjMjdmYjQ4MGQxMzpyb2';
+        var token = 'T1==cGFydG5lcl9pZD00NTUyNTUyMiZzaWc9N2MyNWJlOTE5MDYyMTczOTc3ZGYwOWQ4ODQzZTZkZmFlYzFlOGNhMjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5UVXlOVFV5TW41LU1UUTFPREUzTWpJek56WXpPWDR4VTBOWFZDOUxVMHA0Y2twWFlsbzJUVzU2UkRseVdVbC1VSDQmY3JlYXRlX3RpbWU9MTQ1ODE3MjI0MCZub25jZT0wLjM4NzM3MjEwNzM0MTk0NDgmZXhwaXJlX3RpbWU9MTQ2MDc2MzcxMyZjb25uZWN0aW9uX2RhdGE9';
         var hostName = window.location.hash.split('/')[2]
         console.log('What gets sliced: ', hostName)
-		$http.get('/api/shows/' + hostName)
-			.then(function(returnData){
-                console.log('Return data: ', returnData.data)
-				$scope.thisShow = returnData.data
-                $scope.counter = returnData.data.time * 60
+		// $http.get('/api/shows/' + hostName)
+			// .then(function(returnData){
+    //             console.log('Return data: ', returnData.data)
+				// $scope.thisShow = returnData.data
+    //             $scope.counter = returnData.data.time * 60
                 
                 
-                console.log($scope.currentUser, $scope.thisShow.host)
+    //             console.log($scope.currentUser, $scope.thisShow.host)
    
                 session.connect(token, function(error) {
                 if (error) {
@@ -208,7 +208,7 @@ angular.module('livkonApp')
 		};
 		onClientReady()
 
-	})
+	// })
 	}]) 
 
 angular.module('livkonApp')
