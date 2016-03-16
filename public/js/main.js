@@ -127,6 +127,8 @@ angular.module('livkonApp')
 
 angular.module('livkonApp')
 	.controller('videoChatController', ['$scope', function($scope) {
+
+		console.log('hello from videochat controller')
 		getParameters= function () {
 			var ret = {};
 
