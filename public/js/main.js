@@ -164,7 +164,7 @@ angular.module('livkonApp')
 					"hangoutUrl" : hangoutUrl,
 					"topic" : param["gd"]
 				}
-			}).success(function (data, status, xhr) {
+			}).done(function (data, status, xhr) {
 				$('#msg').html(data.msg);
 				console.log(data)
 			}) .fail(function(xhr, status, error) {
