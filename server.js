@@ -216,7 +216,7 @@ app.post('/api/signupspeaker', function (req, res) {
 
 
 // Create server and listen for connections
-var port = app.get('port');
-app.listen(port, function(){
-	console.log("I am listening to your thoughts!");
+
+app.listen(app.get('port'), function(){
+	console.log("I am listening to your thoughts!" + app.get('port'));
 })
