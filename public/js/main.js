@@ -126,14 +126,14 @@ angular.module('livkonApp')
 	.controller('konnectController', ['$scope', konnectController]) 
 
 angular.module('livkonApp')
-	.controller('videoChatController', ['$scope', function($scope) {
+	.controller('videoChatController', ['$scope', '$http', function($scope, $http) {
 
 		var apiKey = 45525522;
-                var sessionId = '1_MX40NTUyNTUyMn5-MTQ1ODE3MTcyMDg4M35BL0FIekt5RW5LYngxaWgzc1ZjQXVqNEJ-UH4';
-                var session = OT.initSession(apiKey, sessionId);
+        var sessionId = '1_MX40NTUyNTUyMn5-MTQ1ODE3MTcyMDg4M35BL0FIekt5RW5LYngxaWgzc1ZjQXVqNEJ-UH4';
+        var session = OT.initSession(apiKey, sessionId);
                 
         
-                var token = 'T1==cGFydG5lcl9pZD00NTUyNTUyMiZzaWc9M2Q3ZmM1Yjc4ZWRmZjNmMmVmNGEyYzllMjIxY2JjMjdmYjQ4MGQxMzpyb2';
+        var token = 'T1==cGFydG5lcl9pZD00NTUyNTUyMiZzaWc9M2Q3ZmM1Yjc4ZWRmZjNmMmVmNGEyYzllMjIxY2JjMjdmYjQ4MGQxMzpyb2';
         var hostName = window.location.hash.split('/')[2]
         console.log('What gets sliced: ', hostName)
 		$http.get('/api/shows/' + hostName)
@@ -155,12 +155,12 @@ angular.module('livkonApp')
         
             session.on({
                 streamCreated: function(event) { 
-                session.subscribe(event.stream, 'subscribersDiv', {height: "100%", width: "100%"}); 
-  }
-});
+                	session.subscribe(event.stream, 'subscribersDiv', {height: "100%", width: "100%"}); 
+  				}
+			});
 
 
-		
+
 		console.log('hello from videochat controller')
 		getParameters= function () {
 			var ret = {};
@@ -208,7 +208,7 @@ angular.module('livkonApp')
 		};
 		onClientReady()
 
-		{}
+	})
 	}]) 
 
 angular.module('livkonApp')
