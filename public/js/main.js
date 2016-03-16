@@ -128,6 +128,39 @@ angular.module('livkonApp')
 angular.module('livkonApp')
 	.controller('videoChatController', ['$scope', function($scope) {
 
+		var apiKey = 45525522;
+                var sessionId = '1_MX40NTUyNTUyMn5-MTQ1ODE3MTcyMDg4M35BL0FIekt5RW5LYngxaWgzc1ZjQXVqNEJ-UH4';
+                var session = OT.initSession(apiKey, sessionId);
+                
+        
+                var token = 'T1==cGFydG5lcl9pZD00NTUyNTUyMiZzaWc9M2Q3ZmM1Yjc4ZWRmZjNmMmVmNGEyYzllMjIxY2JjMjdmYjQ4MGQxMzpyb2';
+        var hostName = window.location.hash.split('/')[2]
+        console.log('What gets sliced: ', hostName)
+		$http.get('/api/shows/' + hostName)
+			.then(function(returnData){
+                console.log('Return data: ', returnData.data)
+				$scope.thisShow = returnData.data
+                $scope.counter = returnData.data.time * 60
+                
+                
+                console.log($scope.currentUser, $scope.thisShow.host)
+   
+                session.connect(token, function(error) {
+                if (error) {
+                    console.log(error.message);
+                } else {
+                    session.publish('myPublisherDiv', {height: '100%', width: '100%'});
+                }
+            });
+        
+            session.on({
+                streamCreated: function(event) { 
+                session.subscribe(event.stream, 'subscribersDiv', {height: "100%", width: "100%"}); 
+  }
+});
+
+
+		
 		console.log('hello from videochat controller')
 		getParameters= function () {
 			var ret = {};
@@ -168,7 +201,7 @@ angular.module('livkonApp')
 				}
 			}).done(function (data, status, xhr) {
 				$('#msg').html(data.msg);
-				console.log(data)
+				console.log('here is the data', data)
 			}) .fail(function(xhr, status, error) {
 				$('msg').html("There was a problem contacting the help desk. Please try again. ("+textStatus+")");
 			});
