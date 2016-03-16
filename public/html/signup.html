@@ -1,0 +1,342 @@
+    <!-- Sign Up Header -->
+<form action="/signup" method="post">
+        <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+              <h4 class="modal-title">Ready to Join? Create a New Account</h4>
+        </div>   
+
+        
+            <!-- User Name -->
+          <div class="modal-body">
+              <div class="form-group">
+                <label for="userUsername"> User Name </label>
+                <input type="text" class="form-control" required="true" name="userUsername" value="">
+              </div>
+
+              <!-- Email Address -->
+          
+              <div class="form-group">
+                <label for="userEmail"> Email Address </label>
+                <input type="text" class="form-control" required="true" name="userEmail" value="">
+              </div>
+
+              <!-- Date of Birth -->
+            
+              <div class="form-group">
+                <label for="userDob"> Date of Birth </label>
+                <input type="date" class="form-control" required="true" name="userDob" value="">
+                <!--  <input type="date" ng-model="signupForm.birthdate" placeholder="birthdate" /> -->
+                <span class="help-block"></span>
+              </div>
+
+              <!-- Identifying Religion -->
+            
+              <div class="form-group">
+                <label for="identifyingReligion"> Identifying Religion </label>
+                <select type="text" class="form-control" required="true" name="userReligion" value=""> 
+                  <datalist id='listid'>
+                      <option label='Judaism' value='Judaism'>
+                      <option label='Christianity' value='Christianity'>
+                      <option label='Islam' value='Islam'>
+                      <option label='Hinduism' value='Hinduism'>
+                      <option label='Buddhism' value='Buddhism'>
+                      <option label='Confucianism' value='Confucianism'>
+                      <option label='Jainism' value='Jainism'>
+                      <option label='Bahaiism' value='Bahaiism'>
+                      <option label='Shintoism' value='Shintoism'>
+                 </datalist>
+                </select>
+                <span class="help-block"> Pleaes pick the religion you identify with </span>
+              </div>
+
+              <!-- Languages -->
+              
+              <div class="form-group">
+                <label for="languagesSpoken"> Languages You Speak </label>
+                <select multiple type="text" class="form-control" required="" name="userLanguages" value="">
+                  <datalist id='listid'>
+                      <option label='English' value='English'>
+                      <option label='French' value='French'>
+                      <option label='Spanish' value='Spanish'>
+                      <option label='Arabic' value='Arabic'>
+                      <option label='German' value='German'>
+                      <option label='Urdu' value='Urdu'>
+                      <option label='Hindi' value='Hindi'>
+                      <option label='Czech' value='Czech'>
+                      <option label='Hungarian' value='Hungarian'>
+                      <option label='Romanian' value='Romanian'>
+                      <option label='Zulu' value='Zulu'>
+                      <option label='Bengali' value='Bengali'>
+                      <option label='Russian' value='Russian'>
+                      <option label='Portugese' value='Portugese'>
+                      <option label='Mandarin' value='Mandarin'>
+                      <option label='Japanese' value='Japanese'>
+                      <option label='Telugu' value='Telugu'>
+                      <option label='Korean' value='Korean'>
+                      <option label='Tamil' value='Tamil'>
+                      <option label='Turkish' value='Turkish'>
+                      <option label='Italian' value='Italian'>
+                      <option label='Yue (Cantonese)' value='Yue (Cantonese)'>
+                      <option label='Thai' value='Thai'>
+                      <option label='Gujarati' value='Gujarati'>
+                      <option label='Farsi' value='Farsi'>
+                      <option label='Polish' value='Polish'>
+                      <option label='Pashto' value='Pashto'>
+                      <option label='Kannada' value='Kannada'>
+                      <option label='Xiang' value='Xiang'>
+                      <option label='Malayalam' value='Malayalam'>
+                      <option label='Burmese' value='Burmese'>
+                      <option label='Ukrainian' value='Ukrainian'>
+                      <option label='Tagalog' value='Tagalog'>
+                      <option label='Hebrew' value='Hebrew'>
+                      <option label='Yiddish' value='Yiddish'>
+                      <option label='Uzbek' value='Uzbek'>
+                      <option label='Sindhi' value='Sindhi'>
+                      <option label='Oromo' value='Oromo'>
+                      <option label='Igbo' value='Igbo'>
+                      <option label='Azerbaijani' value='Azerbaijani'>
+                      <option label='Serbo-Croatian' value='Serbo-Croatian'>
+                      <option label='Nepali' value='Nepali'>
+                      <option label='Sinhalese' value='Sinhalese'>
+                      <option label='Greek' value='Greek'>
+                      <option label='Kazakh' value='Kazakh'>
+                  </datalist>
+                </select>
+                <span class="help-block"> Please select all languages that you are conversational in </span>
+              </div>
+
+              <!-- Country of Residence -->
+              
+              <div class="form-group">
+                <label for="countryOfResidence"> Country of Residence </label>
+                <select type="text" class="form-control" required="" name="userCountryResidence" value="">
+                     <datalist id='listid'>
+                        <option label='United States' value='United States'>
+                        <option label='Mexico' value='Mexico'>
+                        <option label='Canada' value='Canada'>
+                        <option label='Brazil' value='Brazil'>
+                        <option label='Peru' value='Peru'>
+                        <option label='Bolivia' value='Bolivia'>
+                        <option label='Argentina' value='Argentina'>
+                        <option label='Algeria' value='Algeria'>
+                        <option label='Morocco' value='Morocco'>
+                        <option label='Tunisia' value='Tunisia'>
+                        <option label='Saudi Arabia' value='Saudi Arabia'>
+                        <option label='Kuwait' value='Kuwait'>
+                        <option label='Russia' value='Russia'>
+                        <option label='Portugal' value='Portugal'>
+                        <option label='Spain' value='Spain'>
+                        <option label='India' value='India'>
+                        <option label='Pakistan' value='Pakistan'>
+                        <option label='Palestine' value='Palestine'>
+                        <option label='Israel' value='Israel'>
+                        <option label='Tureky' value='Tureky'>
+                        <option label='Italy' value='Italy'>
+                        <option label='China' value='China'>
+                        <option label='Thailand' value='Thailand'>
+                        <option label='Japan' value='Japan'>
+                        <option label='Iran' value='Iran'>
+                        <option label='Poland' value='Poland'>
+                        <option label='Afghanistan' value='Afghanistan'>
+                        <option label='Vietnam' value='Vietnam'>
+                        <option label='Philippines' value='Philippines'>
+                        <option label='Korea' value='Korea'>
+                        <option label='Burma' value='Burma'>
+                        <option label='Ukraine' value='Ukraine'>
+                        <option label='Georgia' value='Georgia'>
+                        <option label='France' value='France'>
+                        <option label='Jordan' value='Jordan'>
+                        <option label='Uzbekistan' value='Uzbekistan'>
+                        <option label='Kazakhastan' value='Kazakhastan'>
+                        <option label='South Africa' value='South Africa'>
+                        <option label='Chad' value='Chad'>
+                        <option label='Azerbaijan' value='Azerbaijan'>
+                        <option label='Bosnia' value='Bosnia'>
+                        <option label='Nepal' value='Nepal'>
+                        <option label='Serbia' value='Serbia'>
+                        <option label='Greece' value='Greece'>
+                        <option label='Democratic Republic of the Congo' value='Democratic Republic of the Congo'>
+                    </datalist>
+                </select>
+                <span class="help-block"> Optional </span>
+              </div>
+
+              <!-- Gender -->
+              
+              <div class="form-group">
+                <label for="Gender"> Gender </label>
+                <select type="text" class="form-control" required="true" name="userGender" value="">
+                  <datalist id='listid'>
+                    <option label='Female' value='Female'>
+                    <option label='Male' value='Male'>
+                  </datalist>
+                </select>
+              </div>
+
+              <!-- Profile Picture -->
+             
+              <div class="form-group">
+                <label for="profilePicture"> Profile Picture </label>
+                <input type="text" class="form-control" required="false" name="userPicture" value="">
+                <span class="help-block"> Upload A Profile Picture - Optional </span>
+              </div>
+
+              <!-- Password -->
+              
+              <div class="form-group">
+                <label for="password"> Password </label>
+                <input type="text" class="form-control" required="" name="userPassword" value="">
+              </div>
+
+          </div>
+        <!-- Footer -->
+
+        <div class="modal-footer">
+            
+            <button type="input" name="submit" value="newAccount" class="btn btn-success btn-icon"><i class="fa fa-check"></i> Create My Account</button>
+            <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle"></i> Cancel</button>
+        </div>
+      
+ </form>
+
+     <!--  <form ng-submit="signup()">
+        <input type="text" ng-model="signupForm.username" placeholder="username" />
+        <input type="text" ng-model="signupForm.email" placeholder="email" />
+        <label>Identifying Religion</label>
+        <select type="text" ng-model="signupForm.identifyingReligion" placeholder="Identifying Religion"> 
+           <datalist id='listid'>
+            <option label='Judaism' value='Judaism'>
+            <option label='Christianity' value='Christianity'>
+            <option label='Islam' value='Islam'>
+            <option label='Hinduism' value='Hinduism'>
+            <option label='Buddhism' value='Buddhism'>
+            <option label='Confucianism' value='Confucianism'>
+            <option label='Jainism' value='Jainism'>
+            <option label='Bahaiism' value='Bahaiism'>
+            <option label='Shintoism' value='Shintoism'>
+          </datalist>
+        </select> -->
+      <!--   <label> Languages You Speak </label>
+        <select type="text" ng-model="signupForm.languages" placeholder="Languages You Speak">
+             <datalist id='listid'>
+            <option label='English' value='English'>
+            <option label='French' value='French'>
+            <option label='Spanish' value='Spanish'>
+            <option label='Arabic' value='Arabic'>
+            <option label='German' value='German'>
+            <option label='Urdu' value='Urdu'>
+            <option label='Hindi' value='Hindi'>
+            <option label='Czech' value='Czech'>
+            <option label='Hungarian' value='Hungarian'>
+            <option label='Romanian' value='Romanian'>
+            <option label='Zulu' value='Zulu'>
+            <option label='Bengali' value='Bengali'>
+            <option label='Russian' value='Russian'>
+            <option label='Portugese' value='Portugese'>
+            <option label='Mandarin' value='Mandarin'>
+            <option label='Japanese' value='Japanese'>
+            <option label='Telugu' value='Telugu'>
+            <option label='Korean' value='Korean'>
+            <option label='Tamil' value='Tamil'>
+            <option label='Turkish' value='Turkish'>
+            <option label='Italian' value='Italian'>
+            <option label='Yue (Cantonese)' value='Yue (Cantonese)'>
+            <option label='Thai' value='Thai'>
+            <option label='Gujarati' value='Gujarati'>
+            <option label='Farsi' value='Farsi'>
+            <option label='Polish' value='Polish'>
+            <option label='Pashto' value='Pashto'>
+            <option label='Kannada' value='Kannada'>
+            <option label='Xiang' value='Xiang'>
+            <option label='Malayalam' value='Malayalam'>
+            <option label='Burmese' value='Burmese'>
+            <option label='Ukrainian' value='Ukrainian'>
+            <option label='Tagalog' value='Tagalog'>
+            <option label='Hebrew' value='Hebrew'>
+            <option label='Yiddish' value='Yiddish'>
+            <option label='Uzbek' value='Uzbek'>
+            <option label='Sindhi' value='Sindhi'>
+            <option label='Oromo' value='Oromo'>
+            <option label='Igbo' value='Igbo'>
+            <option label='Azerbaijani' value='Azerbaijani'>
+            <option label='Serbo-Croatian' value='Serbo-Croatian'>
+            <option label='Nepali' value='Nepali'>
+            <option label='Sinhalese' value='Sinhalese'>
+            <option label='Greek' value='Greek'>
+            <option label='Kazakh' value='Kazakh'>
+            </datalist>
+        </select>
+
+        <label> Gender </label>
+        <select type="text" ng-model="signupForm.gender" placeholder="gender" list='listid'>
+          <datalist id='listid'>
+            <option label='female' value='female'>
+            <option label='male' value='male'>
+          </datalist>
+        </select>
+
+        <label> Country of Residence </label>
+        <select type="text" ng-model="signupForm.countryOfResidence" placeholder="Country of Residence">
+                <datalist id='listid'>
+            <option label='United States' value='United States'>
+            <option label='Mexico' value='Mexico'>
+            <option label='Canada' value='Canada'>
+            <option label='Brazil' value='Brazil'>
+            <option label='Peru' value='Peru'>
+            <option label='Bolivia' value='Bolivia'>
+            <option label='Argentina' value='Argentina'>
+            <option label='Algeria' value='Algeria'>
+            <option label='Morocco' value='Morocco'>
+            <option label='Tunisia' value='Tunisia'>
+            <option label='Saudi Arabia' value='Saudi Arabia'>
+            <option label='Kuwait' value='Kuwait'>
+            <option label='Russia' value='Russia'>
+            <option label='Portugal' value='Portugal'>
+            <option label='Spain' value='Spain'>
+            <option label='India' value='India'>
+            <option label='Pakistan' value='Pakistan'>
+            <option label='Palestine' value='Palestine'>
+            <option label='Israel' value='Israel'>
+            <option label='Tureky' value='Tureky'>
+            <option label='Italy' value='Italy'>
+            <option label='China' value='China'>
+            <option label='Thailand' value='Thailand'>
+            <option label='Japan' value='Japan'>
+            <option label='Iran' value='Iran'>
+            <option label='Poland' value='Poland'>
+            <option label='Afghanistan' value='Afghanistan'>
+            <option label='Vietnam' value='Vietnam'>
+            <option label='Philippines' value='Philippines'>
+            <option label='Korea' value='Korea'>
+            <option label='Burma' value='Burma'>
+            <option label='Ukraine' value='Ukraine'>
+            <option label='Georgia' value='Georgia'>
+            <option label='France' value='France'>
+            <option label='Jordan' value='Jordan'>
+            <option label='Uzbekistan' value='Uzbekistan'>
+            <option label='Kazakhastan' value='Kazakhastan'>
+            <option label='South Africa' value='South Africa'>
+            <option label='Chad' value='Chad'>
+            <option label='Azerbaijan' value='Azerbaijan'>
+            <option label='Bosnia' value='Bosnia'>
+            <option label='Nepal' value='Nepal'>
+            <option label='Serbia' value='Serbia'>
+            <option label='Greece' value='Greece'>
+            <option label='Democratic Republic of the Congo' value='Democratic Republic of the Congo'>
+            </datalist>
+        </select>
+        
+
+        <input type="image" ng-model="signupForm.profilePicture" placeholder="profilePicture" />
+        <input type="date" ng-model="signupForm.birthdate" placeholder="birthdate" />
+        <input type="password" ng-model="signupForm.password" placeholder="password" />
+        <input type="submit" value="Enter" />
+      </form>
+
+      <!-- Log in Form -->
+  <!--   <h1> Log in </h1>
+      <form ng-submit= "login()">
+        <input type="text" ng-model="loginForm.username" placeholder="username" />
+        <input type="password" ng-model="loginForm.password" placeholder="password" />
+        <input type="submit" value="Enter" />
+      </form> -->

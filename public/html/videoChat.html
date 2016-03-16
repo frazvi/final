@@ -1,75 +1,16 @@
-<!--  <div id='myPublisherDiv'></div> 
- <div id='subscribersDiv'></div>  -->
+<div class="gd"></div>
 
-<<<<<<< HEAD
-       <div class='container'>
-=======
-        <!-- div class='container'>
->>>>>>> f43a834def263d3f50d4cdc5beb65f27606845aa
+<form action="https://plus.google.com/hangouts/_" method="GET">
+    <input type="hidden" name="gid" value="60705" />
 
-            <h1>Interview Box</h1>
+    <select name="gd">
 
-            <div id='loginPage' style='display:none'>
-                <form id='loginForm' role="form">
-                    
-                    <div class="form-group">
-                        <label for='username'>User name</label>
-                        <input type='text' class='form-control' id='username' placeholder='Enter user name' value='Joe'>
-                    </div>
-                    <div class="form-group">
-                        <label for='role'>Role</label>
-                        <select id='role' class='form-control'>
-                            <option value='interviewer'>Interviewer</option>
-                            <option value='interviewee'>Interviewee</option>
-                        </select>
+        <option> Hangouts </option>
+        <option> Google + API </option>
+        <option> +1 Button </option>
+    </select>
+    <input type="submit" />
+</form>
 
-                    </div>
-                    <button id='login' type='submit' class='btn btn-default'>Login</button>
-
-                </form>
-            </div>
-
-
-            <div id='boxPage'  style='display:none'>
-                <div class='row'>
-
-                    <div class='span6' style='margin-top:20px'>
-                        <div id="publisher" class="hero-unit"></div>
-
-                        <div id="subscribers" style="margin-top:30px;margin-bottom:30px">
-                        
-                        </div>
-
-                    </div>
-
-                    <div class='span4' style='margin-top:20px'>
-                        <form id='sendMessageForm'  class='form-horizontal'>
-                            <div class='control-group'>
-                                <textarea id='chatroom' readonly rows='10' cols='50' class='input-large'></textarea>
-
-                            </div>
-
-                            <div class='control-group'>
-                                <input type="text" id='message' class='input-large'/> 
-                                <input id = 'sendMessage' type='submit' value='Send' />
-
-                            </div>
-                            
-
-                        </form>
-                    
-
-                    </div>
-
-                </div> 
-              
-            </div>
-            
-            
-
-<<<<<<< HEAD
-        </div>
-=======
-        </div> -->
->>>>>>> f43a834def263d3f50d4cdc5beb65f27606845aa
-
+<div id="msg"></div>
+<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=onClientReady"></script>

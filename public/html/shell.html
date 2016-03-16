@@ -17,7 +17,14 @@
 
 <!-- Video Chat -->
 
-<meta charset="utf-8">
+<script type="text/javascript" src="//hangoutsapi.talkgadget.google.com/talkgadget/apps/gadgets/js/rpc.js"></script>
+<script type="text/javascript" src="//hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.0"></script>
+
+<script type="text/javascript" src="//www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("jquery", "1.7.1");</script>
+
+
+<!-- <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title> tokboxsite</title>
 <meta name='description' content="">
@@ -26,7 +33,7 @@
 <script src="http://ec2-54-213-131-240.us-west-2.compute.amazonaws.com:1339/socket.io/socket.io.js"></script>
 <script src="/js/common.js"></script>
 <script src="/js/chat.js"></script>
-
+ -->
 
 <!-- Video Chat -->
 
@@ -47,27 +54,42 @@
 </head>
 <body ng-controller="homeController">
 <!-- tokbox library -->
-<script src='//static.opentok.com/v2/js/opentok.min.js'></script>
+<!-- <script src='//static.opentok.com/v2/js/opentok.min.js'></script> -->
 
 <!-- Header -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <p>Livkon</p>
+    <img class="title" src="/public/html/faithtofaithlogo.png" />
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="#/konnect">Konnect</a></li>
-        <li class="dropdown">
+        <li class="active"><a href="#/konnect">Connect</a></li>
+        <li class="dropdown active">
           <a href="#/speakerservices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Speaker Services<span class="caret"></span></a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu active">
             <li><a href="#/findspeaker">Find A Speaker</a></li>
             <li><a href="#/signupspeaker">Sign Up To Be A Speaker</a></li>
           </ul>
         </li> 
         
        
-        <li><a href="#/about">About Livkon</a></li> 
-        <li><a href="#/login">Login</a></li>
+        <li class="active"><a href="#/about">About</a></li> 
+        <li class="active"><a href="#/signup"> Sign Up </a></li>
+        <li class="dropdown active">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+          <ul id="login-dp" class="dropdown-menu">
+             <form class="form" role="form" accept-charset="UTF-8" id="login-nav" ng-submit="login()">
+                    <div class="form-group">
+                       <label class="sr-only" for="exampleInputEmail2">Username</label>
+                       <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Username" required ng-model="loginForm.username">
+                    </div>
+                    <div class="form-group">
+                       <label class="sr-only" for="exampleInputPassword2">Password</label>
+                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required ng-model="loginForm.password">
+                    </div>
+                    <div class="form-group">
+                       <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </div>
        
       </ul>
     </div>
@@ -79,10 +101,10 @@
 
       <!-- Footer -->
       <div class="space"></div>
-      <div class="navbar navbar-fixed-bottom navbar-inverse" role="navigation">
+      <div class="navbar navbar-fixed-bottom navbar-inverse footer" role="navigation">
           <div class="container">
             <div class="navbar-text pull-right">
-            <image class="facebookButton pull-left" src="facebook.jpeg" />
+         <!--    <image class="facebookButton pull-left" src="facebook.jpeg" /> -->
               <p> &copy; All Rights Reserved </p>
               <p> Livkon 2016 </p>
             </div>

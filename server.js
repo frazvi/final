@@ -32,17 +32,20 @@ var userSchema = mongoose.Schema ({
 	identifyingReligion : {type: String, required: true},
 	languages: {type: Array, required: true},
 	countryOfResidence: {type: String, required: false},
-	Gender: {type: String, required: true},
+	gender: {type: String, required: true},
 	profilePicture: {type: String, required: false},
 	password: {type: String, required: true},
 	findSpeakerAttributes: {
-		willingToComepnsate: {type: Boolean, required: true},
-		timeRequired: {type: Number, required: false}
+		willingToComepnsate: {type: Boolean},
+		timeRequired: {type: Number, required: false},
+		language : {type: String},
+		chatLocation: {type: String},
+		topicList : {type: String, required: false}
 	},
 	signUpSpeaker: {
-		language : {type: String, required: true},
-		chatLocation: {type: String, required: true},
-		requireCompensation: {type: Boolean, required: true},
+		language : {type: String},
+		chatLocation: {type: String},
+		requireCompensation: {type: Boolean},
 		amountCompensation : {type: Number, required: false},
 		topicList : {type: String, required: false}
 	},
@@ -120,9 +123,9 @@ app.get('/me', function(req, res) {
 // End of Passport Config
 
 // Routes
-// app.get('/', function (req, res) {
-// 	res.sendFile('/shell.html', {root: './public/html'});
-// })
+app.get('/', function (req, res) {
+	res.sendFile('/shell.html', {root: './public/html'});
+})
 
 app.get('/', function(req, res) {
 	if (!req.session.count) {req.session.count = 0}
@@ -132,18 +135,27 @@ app.get('/', function(req, res) {
 })
 
 app.post('/signup', function(req, res) {
-	console.log(req.body)
+	console.log('at signup', req.body)
 	bcrypt.genSalt(11, function(error, salt) {
-		bcrypt.hash(req.body.password, salt, function(hashError, hash) {
+		bcrypt.hash(req.body.userPassword, salt, function(hashError, hash) {
 			var newUser = new User ({
-				username: req.body.username,
-				email: req.body.email,
-				identifyingReligion : req.body.religion,
-				languages : req.body.languages,
-				countryOfResidence : req.body.countryOfResidence,
-				gender : req.body.gender,
-				profilePicture : req.body.profilePicture,
+				username: req.body.userUsername,
+				email: req.body.userEmail,
+				identifyingReligion : req.body.userReligion,
+				languages : req.body.userLanguages,
+				countryOfResidence : req.body.userCountryOfResidence,
+				gender : req.body.userGender,
+				profilePicture : req.body.userProfilePicture,
 				password: hash,
+				//find speaker
+					willingToComepnsate : req.body.userWillingToComepnsate,
+					timeRequired : req.body.userTimeRequired,
+					language: req.body.userLanguage,
+					chatLocation : req.body.userChatLocation,
+					topicList : req.body.userTopicList,
+				//sign up speaker
+					requireCompensation : req.body.userRequireCompensation,
+					amountCompensation : req.body.userAmountCompensation,
 			});
 			newUser.save(function(saveErr, user) {
 				if (saveErr) { res.send({err:saveErr})}
@@ -159,6 +171,7 @@ app.post('/signup', function(req, res) {
 })
 
 app.post('/login', function(req, res, next) {
+	console.log(req.body)
 	passport.authenticate('local', function(err, user, info) {
 		if (err) {return next(err); }
 		if (!user) {return res.send({error: 'something went wrong :('}); }

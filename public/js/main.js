@@ -9,8 +9,8 @@ angular.module('livkonApp')
 				controller: 'homeController'
 			})
 
-			.when('/login', {
-				templateUrl : '/html/login.html',
+			.when('/signup', {
+				templateUrl : '/html/signup.html',
 				controller  : 'loginController'
 			})
 
@@ -121,11 +121,55 @@ angular.module('livkonApp')
 				})
 	}]) 
 
-angular.module('livkonApp')
-	.controller('loginController', ['$scope', loginController]) 
 
 angular.module('livkonApp')
 	.controller('konnectController', ['$scope', konnectController]) 
+
+angular.module('livkonApp')
+	.controller('videoChatController', ['$scope', function($scope) {
+		getParameters= function () {
+			var ret = {};
+
+			var queryString = window.location.search.substring(1);
+			var params = queryString.split('&')
+			for (var co=0; co<params.length; co++) {
+				var keyValue = params[co].split('-');
+				ret[keyValue[0]] = unescape(keyValue[1]);
+			}
+
+			return ret;
+		};
+
+		onClientReady = function() {
+			gapi.hangout.onApiReady.add(function(e) {
+				if(e.isApiReady) {
+					onApiReady();
+				}
+			});
+		};
+
+		onApiReady = function () {
+			var param = getParameters();
+			var now = new Date();
+
+			var hangoutUrl = gapi.hangout.getHangoutUrl();
+
+			var callbackUrl = "register_hangout.json";
+
+			$.ajax({
+				url: 'callbackUrl',
+				dataType: 'json',
+				data: {
+					"hangoutUrl" : hangoutUrl,
+					"topic" : param["gd"]
+				}
+			}).done(function (data, status, xhr) {
+				$('#msg').html(data.msg);
+			}) .fail(function(xhr, status, error) {
+				$('msg').html("There was a problem contacting the help desk. Please try again. ("+textStatus+")");
+			});
+		};
+	}]) 
 
 angular.module('livkonApp')
 	.controller('findSpeakerController', ['$scope', '$http', '$window', function($scope, $http, $window) {
@@ -292,7 +336,7 @@ angular.module('livkonApp')
 
 //     }
 // })
-=======
+
 // angular.module('livkonApp')
 // 	.controller('videoChatController', ['$scope', videoChatController])
 // $(document).ready(function() {
@@ -387,8 +431,6 @@ angular.module('livkonApp')
 
 //     }
 // })
->>>>>>> f43a834def263d3f50d4cdc5beb65f27606845aa
-
 // function videoChatController ($scope) {
 // 	var apiKey = 45525522;
 // 	var sessionId = '1_MX40NTUyNTUyMn5-MTQ1NzY2NTAyNDU5MH5JTDR0VmlMUUwzT0xvdmNxQVE4eGZhSC9-UH4';
@@ -411,12 +453,23 @@ angular.module('livkonApp')
 // }
 
 function homeController ($scope) {
+	$scope.loginform = {}
 	console.log('home Controller!')
+	console.log('login Controller!')
+	$scope.login = function () {
+		$http.post('/login', $scope.loginform)
+		.then(function (returnData){
+			console.log(returnData)
+		})
+
+	}
 }
 
-function loginController ($scope) {
-	console.log('login Controller!')
+function signupController ($scope) {
+	console.log('signup Controller!')
 }
+
+
 function konnectController ($scope) {
 	console.log('konnect Controller!')
 }
